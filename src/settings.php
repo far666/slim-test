@@ -17,10 +17,14 @@ return [
         ],
         // @TODO: 拉到另一個file去分辨 正式機跟測試機
         'db' => [
+            'driver' => 'mysql',
             'host' => 'localhost',
-            'user' => 'social',
-            'pass' => 'abc123',
-            'dbname' => 'social',
+            'database' => 'social',
+            'username' => 'social',
+            'password' => 'abc123',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
         ]
     ],
 ];
