@@ -15,5 +15,12 @@ return [
             'path' => __DIR__ . '/../logs/app.log',
             'level' => \Monolog\Logger::DEBUG,
         ],
+        // @TODO: 拉到另一個file去分辨 正式機跟測試機
+        'db' => [
+            'host' => 'localhost',
+            'user' => 'social',
+            'pass' => 'abc123',
+            'dbname' => 'social',
+        ]
     ],
 ];
