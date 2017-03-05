@@ -11,8 +11,7 @@
 
 //for practice
 $app->get('/book', function ($request, $response, $args) {
-    // include_once("../app/controller/BookController.php");
-    $controller = $this->get('App\Controller\BookController'); //@FIXME: find a way to autoload class
+    $controller = $this->get('App\Controller\BookController');
     
     $result = $controller->find(1);
 
