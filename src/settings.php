@@ -1,4 +1,8 @@
 <?php
+
+$db_path = __DIR__ . "/../config/db.json";
+$db = json_decode(file_get_contents($db_path), true);
+
 return [
     'settings' => [
         'displayErrorDetails' => true, // set to false in production
@@ -16,15 +20,6 @@ return [
             'level' => \Monolog\Logger::DEBUG,
         ],
         // @TODO: 拉到另一個file去分辨 正式機跟測試機
-        'db' => [
-            'driver' => 'mysql',
-            'host' => 'localhost',
-            'database' => 'social',
-            'username' => 'social',
-            'password' => 'abc123',
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-        ]
+        'db' => $db
     ],
 ];
