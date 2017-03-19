@@ -9,21 +9,14 @@
 //     return $this->renderer->render($response, 'index.phtml', $args);
 // });
 
-//for practice
-// $app->get('/book', function ($request, $response, $args) {
-//     $controller = $this->get('App\Controller\BookController');
-    
-//     $result = $controller->find(1);
+createRouters($app, "persons", \App\Controller\PersonsController::class);
+createRouters($app, "descriptions", \App\Controller\PersonDescriptionController::class, "/persons/{person_id}");
 
-//     echo "<pre>";
-//     print_r($result);
-//     echo "</pre>";
-//     exit;
-// });
-
-$app->get('/persons[.json]', \App\Controller\PersonController::class . ":index");
-$app->get('/persons/{id}', \App\Controller\PersonController::class . ":show");
-$app->get('/persons/{id}/descriptions[.json]', \App\Controller\PersonController::class . ":descriptions");
-// $app->get('/persons/{person_id}/descriptions', \App\Controller\PersonDescriptionController::class . ":index");
-
-
+function createRouters($app, $controller, $resources, $prefix = "")
+{
+	$app->get("{$prefix}/{$controller}[.json]", $resources . ":index");
+	$app->post("{$prefix}/{$controller}[.json]", $resources . ":create");
+	$app->get("{$prefix}/{$controller}/{id}", $resources . ":show");
+	$app->map(["PUT", "PATCH"], "{$prefix}/{$controller}/{id}", $resources . ":update");
+	$app->delete("{$prefix}/{$controller}/{id}", $resources . ":destroy");
+}

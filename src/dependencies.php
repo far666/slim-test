@@ -29,6 +29,8 @@ $container['db'] = function ($c) {
     return $capsule;
 };
 
+$container->get('db');
+
 $container[App\Controller\BookController::class] = function ($c) {
     // $view = $c->get('view');
     $logger = $c->get('logger');
@@ -36,9 +38,7 @@ $container[App\Controller\BookController::class] = function ($c) {
     return new App\Controller\BookController($logger, $table);
 };
 
-$container[App\Controller\PersonController::class] = function ($c) {
-    // $view = $c->get('view');
+$container[App\Controller\PersonsController::class] = function ($c) {
     $logger = $c->get('logger');
-    $table = $c->get('db')->table('persons');
-    return new App\Controller\PersonController($logger, $table);
+    return new App\Controller\PersonsController($logger);
 };
