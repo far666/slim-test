@@ -35,3 +35,10 @@ $container[App\Controller\BookController::class] = function ($c) {
     $table = $c->get('db')->table('books');
     return new App\Controller\BookController($logger, $table);
 };
+
+$container[App\Controller\PersonController::class] = function ($c) {
+    // $view = $c->get('view');
+    $logger = $c->get('logger');
+    $table = $c->get('db')->table('persons');
+    return new App\Controller\PersonController($logger, $table);
+};

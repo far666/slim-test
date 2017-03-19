@@ -10,13 +10,20 @@
 // });
 
 //for practice
-$app->get('/book', function ($request, $response, $args) {
-    $controller = $this->get('App\Controller\BookController');
+// $app->get('/book', function ($request, $response, $args) {
+//     $controller = $this->get('App\Controller\BookController');
     
-    $result = $controller->find(1);
+//     $result = $controller->find(1);
 
-    echo "<pre>";
-    print_r($result);
-    echo "</pre>";
-    exit;
-});
+//     echo "<pre>";
+//     print_r($result);
+//     echo "</pre>";
+//     exit;
+// });
+
+$app->get('/persons[.json]', \App\Controller\PersonController::class . ":index");
+$app->get('/persons/{id}', \App\Controller\PersonController::class . ":show");
+$app->get('/persons/{id}/descriptions[.json]', \App\Controller\PersonController::class . ":descriptions");
+// $app->get('/persons/{person_id}/descriptions', \App\Controller\PersonDescriptionController::class . ":index");
+
+
