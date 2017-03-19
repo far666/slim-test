@@ -3,3 +3,4 @@
 !/logs/README.md
 /config/*.json
 !/config/*.sample.json
+composer.lock
