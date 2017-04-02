@@ -31,14 +31,20 @@ $container['db'] = function ($c) {
 
 $container->get('db');
 
-$container[App\Controller\BookController::class] = function ($c) {
-    // $view = $c->get('view');
-    $logger = $c->get('logger');
-    $table = $c->get('db')->table('books');
-    return new App\Controller\BookController($logger, $table);
+// for debug
+$container['errorHandler'] = function ($c) {
+    return function ($request, $response, $exception) use ($c) {
+        return $c['response']->withStatus(404)
+                             ->withHeader('Content-Type', 'application/json')
+                             ->withJson(array("status" => false, "message" => "page not found"));
+    };
 };
 
-$container[App\Controller\PersonsController::class] = function ($c) {
-    $logger = $c->get('logger');
-    return new App\Controller\PersonsController($logger);
+$container['phpErrorHandler'] = function ($c) {
+    return function ($request, $response, $error) use ($c) {
+        // log error here
+        return $c['response']->withStatus(500)
+                             ->withHeader('Content-Type', 'application/json')
+                             ->withJson(array("status" => false, "message" => "page not found 2"));
+    };
 };

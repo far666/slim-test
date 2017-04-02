@@ -3,20 +3,15 @@
 namespace App\Controller;
 
 //use Slim\Views\Twig;
-use Psr\Log\LoggerInterface;
+//use Psr\Log\LoggerInterface;
 //use Illuminate\Database\Query\Builder;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
 class PersonDescriptionsController
 {
-    private $logger;
-
     public function __construct(
-        LoggerInterface $logger
     ) {
-        $this->logger = $logger;
-    }
 
     public function __invoke(Request $request, Response $response, $args)
     {

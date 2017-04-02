@@ -10,7 +10,7 @@
 // });
 
 createRouters($app, "persons", \App\Controller\PersonsController::class);
-createRouters($app, "descriptions", \App\Controller\PersonDescriptionController::class, "/persons/{person_id}");
+createRouters($app, "descriptions", \App\Controller\PersonDescriptionsController::class, "/persons/{person_id}");
 
 function createRouters($app, $controller, $resources, $prefix = "")
 {
