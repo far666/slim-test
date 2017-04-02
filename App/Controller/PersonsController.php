@@ -28,6 +28,7 @@ class PersonsController
 
     public function show(Request $request, Response $response, $args)
     {
+        $person = \App\Models\Person::find($args['id']);
         $response = $response->withJson($person->toArray());
         return $response;
     }

@@ -34,6 +34,7 @@ $container->get('db');
 // for debug
 $container['errorHandler'] = function ($c) {
     return function ($request, $response, $exception) use ($c) {
+        // log error here
         return $c['response']->withStatus(404)
                              ->withHeader('Content-Type', 'application/json')
                              ->withJson(array("status" => false, "message" => "page not found"));
@@ -43,6 +44,7 @@ $container['errorHandler'] = function ($c) {
 $container['phpErrorHandler'] = function ($c) {
     return function ($request, $response, $error) use ($c) {
         // log error here
+        // print_R($error);
         return $c['response']->withStatus(500)
                              ->withHeader('Content-Type', 'application/json')
                              ->withJson(array("status" => false, "message" => "page not found 2"));

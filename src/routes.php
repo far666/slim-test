@@ -1,14 +1,6 @@
 <?php
 // Routes
 
-// $app->get('/[{name}]', function ($request, $response, $args) {
-//     // Sample log message
-//     $this->logger->info("Slim-Skeleton '/' route");
-
-//     // Render index view
-//     return $this->renderer->render($response, 'index.phtml', $args);
-// });
-
 createRouters($app, "persons", \App\Controller\PersonsController::class);
 createRouters($app, "descriptions", \App\Controller\PersonDescriptionsController::class, "/persons/{person_id}");
 
