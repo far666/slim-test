@@ -21,41 +21,41 @@ class RelationshipTypeController
 
     public function index(Request $request, Response $response, $args)
     {
-        $person = \App\Models\Person::find($args['person_id']);
-        $response = $response->withJson($person->relationships->toArray());
+        $relatoinship_types = \App\Models\RelationshipType::all();
+        $response = $response->withJson($relatoinship_types->toArray());
         return $response;
     }
 
     public function show(Request $request, Response $response, $args)
     {
-        $person = \App\Models\Person::find($args['id']);
-        $response = $response->withJson($person->toArray());
+        $relatoinship_type = \App\Models\RelationshipType::find($args['id']);
+        $response = $response->withJson($relatoinship_type->toArray());
         return $response;
     }
 
     public function create(Request $request, Response $response, $args)
     {
         $params = $request->getParams();
-        $person = \App\Models\Person::create($params);
-        $response = $response->withJson($person->toArray());
+        $relatoinship_type = \App\Models\RelationshipType::create($params);
+        $response = $response->withJson($relatoinship_type->toArray());
 
         return $response;
     }
 
     public function update(Request $request, Response $response, $args)
     {
-        $person = \App\Models\Person::find($args['id']);
+        $relatoinship_type = \App\Models\RelationshipType::find($args['id']);
         $params = $request->getParams();
-        $person->update($params);
-        $response = $response->withJson($person->toArray());
+        $relatoinship_type->update($params);
+        $response = $response->withJson($relatoinship_type->toArray());
 
         return $response;
     }
 
     public function destroy(Request $request, Response $response, $args)
     {
-        $person = \App\Models\Person::find($args['id']);
-        $person->update(array("deleted_at" => date("Y-m-d H:i:s")));
+        $relatoinship_type = \App\Models\RelationshipType::find($args['id']);
+        $relatoinship_type->update(array("deleted_at" => date("Y-m-d H:i:s")));
 
         return $response;
     }
