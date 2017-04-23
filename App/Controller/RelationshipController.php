@@ -29,8 +29,8 @@ class RelationshipController
 
     public function show(Request $request, Response $response, $args)
     {
-        $relationship = \App\Models\Relationship::where('hash', $args['id'])->first();
-        $response = $response->withJson($relationship->toArray());
+        $result = \App\Models\Relationship::getPersonRelations($args['id']);
+        $response = $response->withJson($result);
         return $response;
     }
 

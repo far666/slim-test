@@ -12,7 +12,7 @@ class Relationship extends Model
 
     public function relationship_type()
     {
-        return $this->hasOne("App\Models\RelationshipType");
+        return $this->belongsTo("App\Models\RelationshipType");
     }
 
     protected static function boot()
@@ -45,5 +45,20 @@ class Relationship extends Model
 
         $hash = substr(md5(self::HASH_SALT . $A_id . "-" . $B_id), 0, 10);
         return $hash;
+   }
+
+   public static function getPersonRelations($id)
+   {
+        $relationships = self::where('person_A_id', $id)->orWhere('person_B_id', $id)->get();
+        $result = array();
+        foreach ($relationships as $relationship) {
+            $result[] = array(
+                'id' => $relationship->id,
+                'hash' => $relationship->hash,
+                'relationship_type' => $relationship->relationship_type->name,
+            );
+        }
+
+        return $result;
    }
 }
