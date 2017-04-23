@@ -21,42 +21,45 @@ class RelationshipController
 
     public function index(Request $request, Response $response, $args)
     {
-        $persons = \App\Models\Person::all();
-        $response = $response->withJson($persons->toArray());
+        // maybe useless
+        $relationships = \App\Models\Relationship::all();
+        $response = $response->withJson($relationships->toArray());
         return $response;
     }
 
     public function show(Request $request, Response $response, $args)
     {
-        $person = \App\Models\Person::find($args['id']);
-        $response = $response->withJson($person->toArray());
+        $relationship = \App\Models\Relationship::where('hash', $args['id'])->first();
+        $response = $response->withJson($relationship->toArray());
         return $response;
     }
 
     public function create(Request $request, Response $response, $args)
     {
         $params = $request->getParams();
-        $person = \App\Models\Person::create($params);
-        $response = $response->withJson($person->toArray());
+        $relationship = \App\Models\Relationship::create($params);
+        $response = $response->withJson($relationship->toArray());
 
         return $response;
     }
 
     public function update(Request $request, Response $response, $args)
     {
-        $person = \App\Models\Person::find($args['id']);
         $params = $request->getParams();
-        $person->update($params);
-        $response = $response->withJson($person->toArray());
+        $params['relationship_type'] = 1;
+        $relationship = \App\Models\Relationship::where('hash', $args['id'])->first();
+        $relationship->update($params);
+        $response = $response->withJson($relationship->toArray());
 
         return $response;
     }
 
     public function destroy(Request $request, Response $response, $args)
     {
-        $person = \App\Models\Person::find($args['id']);
-        $person->update(array("deleted_at" => date("Y-m-d H:i:s")));
+        $relationship = \App\Models\Relationship::where('hash', $args['id'])->first();
+        $relationship->update(array("deleted_at" => date("Y-m-d H:i:s")));
 
         return $response;
     }
+
 }

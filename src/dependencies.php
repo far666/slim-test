@@ -35,18 +35,19 @@ $container->get('db');
 $container['errorHandler'] = function ($c) {
     return function ($request, $response, $exception) use ($c) {
         // log error here
+        print_R($exception->getMEssage());
         return $c['response']->withStatus(404)
-                             ->withHeader('Content-Type', 'application/json')
-                             ->withJson(array("status" => false, "message" => "page not found"));
+            ->withHeader('Content-Type', 'application/json')
+            ->withJson(array("status" => false, "message" => "page not found"));
     };
 };
 
 $container['phpErrorHandler'] = function ($c) {
     return function ($request, $response, $error) use ($c) {
         // log error here
-        // print_R($error);
+        // print_R($error->getMEssage());
         return $c['response']->withStatus(500)
-                             ->withHeader('Content-Type', 'application/json')
-                             ->withJson(array("status" => false, "message" => "page not found 2"));
+            ->withHeader('Content-Type', 'application/json')
+            ->withJson(array("status" => false, "message" => "page not found 2"));
     };
 };
