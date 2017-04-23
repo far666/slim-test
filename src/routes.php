@@ -3,6 +3,8 @@
 
 createRouters($app, "persons", \App\Controller\PersonsController::class);
 createRouters($app, "descriptions", \App\Controller\PersonDescriptionsController::class, "/persons/{person_id}");
+createRouters($app, "relationship", \App\Controller\RelationshipController::class, "/persons/{person_id}");
+createRouters($app, "relationship_type", \App\Controller\RelationshipTypeController::class);
 
 function createRouters($app, $controller, $resources, $prefix = "")
 {
