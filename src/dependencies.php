@@ -18,6 +18,11 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
+// flash
+$container['flash'] = function () {
+    return new \Slim\Flash\Messages();
+};
+
 // Service factory for the ORM
 $container['db'] = function ($c) {
     $capsule = new \Illuminate\Database\Capsule\Manager;

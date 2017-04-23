@@ -26,5 +26,21 @@ require __DIR__ . '/../src/middleware.php';
 // Register routes
 require __DIR__ . '/../src/routes.php';
 
+// flash exmaple
+$app->get('/foo', function ($req, $res, $args) {
+    // Set flash message for next request
+    $this->flash->addMessage('Test', 'This is a message');
+
+    // Redirect
+    return $res->withStatus(302)->withHeader('Location', '/bar');
+});
+
+// flash exmaple
+$app->get('/bar', function ($req, $res, $args) {
+    // Get flash messages from previous request
+    $messages = $this->flash->getMessages();
+    print_r($messages);
+});
+
 // Run app
 $app->run();
