@@ -19,9 +19,9 @@ class RelationshipController
         return $response;
     }
 
+    // maybe useless
     public function index(Request $request, Response $response, $args)
     {
-        // maybe useless
         $relationships = \App\Models\Relationship::all();
         $response = $response->withJson($relationships->toArray());
         return $response;
