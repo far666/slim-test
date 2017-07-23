@@ -16,12 +16,12 @@ class IndexController
 
     public function __construct(
         // Twig $view,
-        LoggerInterface $logger,
-        Builder $table
+        //LoggerInterface $logger,
+        //Builder $table
     ) {
         // $this->view = $view;
-        $this->logger = $logger;
-        $this->table = $table;
+        //$this->logger = $logger;
+        //$this->table = $table;
     }
 
     public function __invoke(Request $request, Response $response, $args)
@@ -38,6 +38,12 @@ class IndexController
     public function find($id)
     {
         echo "find id {$id}";
+        exit;
+    }
+
+    public function index(Request $request, Response $response, $args)
+    {
+        echo "test index";
         exit;
     }
 }

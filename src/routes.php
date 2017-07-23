@@ -1,5 +1,7 @@
 <?php
+
 // Routes
+$app->get("/index", \App\Controller\IndexController::class . ":index");
 
 createRouters($app, "persons", \App\Controller\PersonsController::class);
 createRouters($app, "descriptions", \App\Controller\PersonDescriptionsController::class, "/persons/{person_id}");
